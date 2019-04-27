@@ -1,0 +1,23 @@
+.example-card {
+    width: 15vw;
+    height: 11vw;
+    border: 2px solid rgba(24, 24, 82, 0.548);
+    border-radius: 5px;
+    transition: background-color 200ms ease-in;
+}
+
+.center {
+    margin: 0 auto;
+}
+
+.example-card:hover {
+   background-color: rgba(70, 70, 70, 0.247)
+}
+
+.example-card img{
+    margin:0 auto;
+    top: 50%;
+    left: 50%;
+    max-width:100%;
+    max-height:100%;
+}
