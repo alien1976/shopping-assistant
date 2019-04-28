@@ -1,2 +1,45 @@
-<sa-shops-choice></sa-shops-choice>
-<router-outlet></router-outlet>
+<mat-sidenav-container fullscreen (backdropClick)="closeSidenav()">
+    <mat-sidenav [opened]="showSidenav" (keydown.esc)="closeSidenav()">
+        <mat-nav-list>
+            <sa-nav-item (navigate)="closeSidenav()" *ngIf="!(loggedIn)" routerLink="/login" icon="face"
+                hint="Login with username & password" tabindex="-1">
+                Login
+            </sa-nav-item>
+            <sa-nav-item (navigate)="closeSidenav()" *ngIf="!(loggedIn)" routerLink="/register" icon="perm_identity"
+                hint="Register as new user" tabindex="-1">
+                Register
+            </sa-nav-item>
+            <sa-nav-item (navigate)="closeSidenav()" routerLink="/home" icon="home" tabindex="-1">
+                Home
+            </sa-nav-item>
+            <sa-nav-item (navigate)="closeSidenav()" routerLink="/products" icon="view_list" hint="Manage Products"
+                tabindex="-1">
+                Products
+            </sa-nav-item>
+            <sa-nav-item (navigate)="closeSidenav()" routerLink="/users" icon="group" hint="Manage Users" tabindex="-1">
+                Users
+            </sa-nav-item>
+            <sa-nav-item (navigate)="closeSidenav()" *ngIf="loggedIn" routerLink="/challenges" icon="view_list"
+                hint="Manage challenges" tabindex="-1">
+                Challenges
+            </sa-nav-item>
+            <sa-nav-item (navigate)="closeSidenav()" *ngIf="loggedIn" routerLink="/users" icon="people"
+                hint="Manage users" tabindex="-1">
+                Users
+            </sa-nav-item>
+            <mat-divider *ngIf="loggedIn"></mat-divider>
+            <sa-nav-item (navigate)="closeSidenav()" *ngIf="loggedIn" routerLink="/logout" icon="exit_to_app"
+                hint="Logout currently logged user" tabindex="-1">
+                Logout
+            </sa-nav-item>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <sa-toolbar (openMenu)="openSidenav()">
+        Shopping Assistant
+    </sa-toolbar>
+
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
+</mat-sidenav-container>

@@ -1,8 +1,7 @@
-<h1>Choose a shop to continue:</h1>
-<div fxLayout="row wrap" fxFlexAlign="center center" fxLayoutGap="20px" >
-  <div *ngFor="let shop of shops">
-    <mat-card class="example-card">
-      <img mat-card-image [src]="shop.logo">
+<div fxLayout="row wrap" fxFlexAlign="center center" fxLayoutAlign="center center" fxLayoutGap="15px">
+  <h1 fxFlex="grow" fxFlexAlign="center center" fxLayoutAlign="center center">Choose a shop to continue:</h1>
+  <div *ngFor="let shop of shops" class="parent">
+    <mat-card class="children" [ngStyle]="{ 'background-image': 'url(' + shop.logo + ')'}">
     </mat-card>
   </div>
 </div>

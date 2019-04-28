@@ -1,23 +1,21 @@
-.example-card {
+.parent {
     width: 15vw;
-    height: 11vw;
-    border: 2px solid rgba(24, 24, 82, 0.548);
+    height: 15vw;
+    margin-top: 15px;
+    margin-bottom: 15px;
     border-radius: 5px;
-    transition: background-color 200ms ease-in;
 }
 
-.center {
-    margin: 0 auto;
+.children {
+    height: 70%;
+    width: 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    transition: all .5s;
 }
 
-.example-card:hover {
-   background-color: rgba(70, 70, 70, 0.247)
-}
-
-.example-card img{
-    margin:0 auto;
-    top: 50%;
-    left: 50%;
-    max-width:100%;
-    max-height:100%;
+.children:hover {
+    /* background-color: rgba(70, 70, 70, 0.247); */
+    transform: scale(1.07);
 }
