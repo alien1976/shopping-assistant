@@ -9,7 +9,7 @@
                 hint="Register as new user" tabindex="-1">
                 Register
             </sa-nav-item>
-            <sa-nav-item (navigate)="closeSidenav()" routerLink="/home" icon="home" tabindex="-1">
+            <sa-nav-item (navigate)="closeSidenav()" routerLink="/" icon="home" tabindex="-1">
                 Home
             </sa-nav-item>
             <sa-nav-item (navigate)="closeSidenav()" routerLink="/products" icon="view_list" hint="Manage Products"
@@ -35,7 +35,7 @@
         </mat-nav-list>
     </mat-sidenav>
 
-    <sa-toolbar (openMenu)="openSidenav()">
+    <sa-toolbar (openMenu)="openSidenav()" user>
         Shopping Assistant
     </sa-toolbar>
 

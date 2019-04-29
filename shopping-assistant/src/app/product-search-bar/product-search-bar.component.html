@@ -1,5 +1,6 @@
 <mat-form-field class="example-full-width">
-  <input matInput placeholder="Find a product" [matAutocomplete]="auto" [formControl]="productsControl">
+  <input class="cursor-pointer" matInput placeholder="Find a product" [matAutocomplete]="auto"
+    [formControl]="productsControl">
   <mat-autocomplete #auto="matAutocomplete">
     <mat-option (click)="productSelected(product)" *ngFor="let product of filteredProducts | async"
       [value]="product.name">
