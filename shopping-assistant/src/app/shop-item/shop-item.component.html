@@ -1,0 +1,22 @@
+<h1 class="center">Wellcome to "{{shop.name}}"</h1>
+<div fxLayout="row" fxLayoutAlign="space-between start">
+  <div fxLayout="column" fxLayoutAlign="center start" fxFlex="23" fxFlexOffset="2">
+    <sa-product-search-bar (onProductSelected)="productIsSelected($event)" class="full-width" [products]="products">
+    </sa-product-search-bar>
+    <mat-list class="full-width">
+      <h3 mat-subheader>Selected products</h3>
+      <mat-list-item *ngFor="let product of selectedProducts">
+        <img mat-list-icon class="example-option-img" aria-hidden [src]="product.logo" height="25">
+        <h4 mat-line>{{product.name}}
+        </h4>
+        <p mat-line> {{product.price}} </p>
+        <mat-icon (click)="productIsDeleted(product)" class="example-icon" aria-hidden="false"
+          aria-label="Example delete icon">delete</mat-icon>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+  </div>
+  <div class="map" fxFlexOffset="3" fxFlex="grow">
+    <img src="https://i.pinimg.com/originals/78/a1/65/78a165f3db1121f23fe4524f40da2608.png" alt="">
+  </div>
+</div>

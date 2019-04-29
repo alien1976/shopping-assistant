@@ -1,7 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
-@import '@angular/material/prebuilt-themes/pink-bluegrey.css';
 
-h1{
-    font-family: Roboto,"Helvetica Neue",sans-serif;
+@import '@angular/material/prebuilt-themes/pink-bluegrey.css';
+h1 {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
     font-size: 3.5vw;
+}
+
+/* Custom scroll css */
+::-webkit-scrollbar-track {
+    background-color: black;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    background-color: black;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #830c3b;
 }

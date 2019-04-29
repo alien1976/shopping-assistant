@@ -6,14 +6,22 @@ import { AppComponent } from './app.component';
 import { ShopsChoiceComponent } from './shops-choice/shops-choice.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule } from '@angular/material';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NavigationModule } from './navigation/navigation.module';
+import { ShopItemComponent } from './shop-item/shop-item.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ProductSearchBarComponent } from './product-search-bar/product-search-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ShopsChoiceComponent
+    ShopsChoiceComponent,
+    ShopItemComponent,
+    ProductSearchBarComponent
   ],
   imports: [
     BrowserModule,
@@ -21,9 +29,13 @@ import { NavigationModule } from './navigation/navigation.module';
     MatCardModule,
     MatSidenavModule,
     MatToolbarModule,
-    FlexLayoutModule,
     MatListModule,
     MatIconModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    FlexLayoutModule,
     AppRoutingModule,
     NavigationModule,
   ],

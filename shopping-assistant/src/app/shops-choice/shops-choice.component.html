@@ -1,7 +1,9 @@
 <div fxLayout="row wrap" fxFlexAlign="center center" fxLayoutAlign="center center" fxLayoutGap="15px">
   <h1 fxFlex="grow" fxFlexAlign="center center" fxLayoutAlign="center center">Choose a shop to continue:</h1>
   <div *ngFor="let shop of shops" class="parent">
-    <mat-card class="children" [ngStyle]="{ 'background-image': 'url(' + shop.logo + ')'}">
-    </mat-card>
+    <a routerLink="/shops/{{shop.name}}">
+      <mat-card class="children" [ngStyle]="{ 'background-image': 'url(' + shop.logo + ')'}">
+      </mat-card>
+    </a>
   </div>
 </div>

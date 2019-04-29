@@ -1,0 +1,11 @@
+<mat-form-field class="example-full-width">
+  <input matInput placeholder="Find a product" [matAutocomplete]="auto" [formControl]="productsControl">
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option (click)="productSelected(product)" *ngFor="let product of filteredProducts | async"
+      [value]="product.name">
+      <img class="example-option-img" aria-hidden [src]="product.logo" height="25">
+      <span>{{product.name}}</span> |
+      <small>Price: {{product.price}}</small>
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

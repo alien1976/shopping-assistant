@@ -37,4 +37,12 @@ export class ShopsServiceService {
     this.shops.push(shop);
     return of(this.shops);
   }
+
+  getShop(name: string): Observable<Shop> {
+    const shopIndex = this.shops.findIndex((el) => {
+      return el.name === name;
+    });
+
+    return of(this.shops[shopIndex]);
+  }
 }
