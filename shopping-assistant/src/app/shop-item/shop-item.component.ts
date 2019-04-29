@@ -16,6 +16,7 @@ export class ShopItemComponent implements OnInit {
 
   products: Product[];
   selectedProducts: Product[];
+  totalPrice: number = 0;
   constructor(private route: ActivatedRoute,
     private productService: ProductsServiceService,
     private shopService: ShopsServiceService) { }
@@ -38,11 +39,21 @@ export class ShopItemComponent implements OnInit {
 
   productIsSelected(product: Product) {
     this.selectedProducts.push(product);
+    this.calcTotalPrice();
   }
 
   productIsDeleted(product: Product) {
     const productIndex = this.selectedProducts.findIndex((el) => el.name === product.name);
 
     this.selectedProducts.splice(productIndex, 1);
+    this.calcTotalPrice();
+  }
+
+  calcTotalPrice() {
+    this.totalPrice = 0;
+
+    this.selectedProducts.forEach((el) => {
+      this.totalPrice += el.price;
+    });
   }
 }
