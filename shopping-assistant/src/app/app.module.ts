@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ShopsChoiceComponent } from './shops-choice/shops-choice.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule } from '@angular/material';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -17,6 +18,8 @@ import { ShopItemComponent } from './shop-item/shop-item.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProductSearchBarComponent } from './product-search-bar/product-search-bar.component';
 import { UserLoginComponent } from './user-login/user-login.component';
+import { UserPageComponent } from './user-page/user-page.component';
+import { UserSettingsComponent } from './user-page/user-settings/user-settings.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,9 @@ import { UserLoginComponent } from './user-login/user-login.component';
     ShopsChoiceComponent,
     ShopItemComponent,
     ProductSearchBarComponent,
-    UserLoginComponent
+    UserLoginComponent,
+    UserPageComponent,
+    UserSettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +39,7 @@ import { UserLoginComponent } from './user-login/user-login.component';
     MatToolbarModule,
     MatListModule,
     MatIconModule,
+    MatTabsModule,
     MatAutocompleteModule,
     MatFormFieldModule,
     MatButtonModule,

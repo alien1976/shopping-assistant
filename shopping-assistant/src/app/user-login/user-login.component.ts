@@ -5,6 +5,7 @@ import { UserServiceService } from '../user-service.service';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { SharedServiceService } from '../shared-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'sa-user-login',
@@ -13,12 +14,14 @@ import { SharedServiceService } from '../shared-service.service';
 })
 export class UserLoginComponent implements OnInit {
   loginForm: FormGroup;
+  hide = true;
 
   users: User[];
   @Output() logged = new EventEmitter<User>();
   constructor(private usersService: UserServiceService,
     private sharedService: SharedServiceService,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    private router: Router) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -38,6 +41,7 @@ export class UserLoginComponent implements OnInit {
     if (userIndex !== -1) {
       if (this.users[userIndex].password === password) {
         this.sharedService.emitChange(this.users[userIndex]);
+        this.router.navigate([`/users/${this.users[userIndex].name}`]);
       } else {
         this.loginForm.get('password').setErrors({
           notValid: true

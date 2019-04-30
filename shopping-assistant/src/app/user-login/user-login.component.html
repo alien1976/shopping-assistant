@@ -7,7 +7,7 @@
     <form [formGroup]="loginForm">
       <mat-form-field appearance="outline">
         <mat-label>User name</mat-label>
-        <input matInput formControlName="userName" placeholder="Enter your user name">
+        <input (keydown.enter)="onLogin()" matInput formControlName="userName" placeholder="Enter your user name">
         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         <mat-error *ngIf="loginForm.invalid">{{getUserNameErrorMessage()}}</mat-error>
       </mat-form-field>
@@ -17,7 +17,7 @@
     <form [formGroup]="loginForm">
       <mat-form-field appearance="outline">
         <mat-label>Password</mat-label>
-        <input matInput formControlName="password" placeholder="Enter your password"
+        <input (keydown.enter)="onLogin()" matInput formControlName="password" placeholder="Enter your password"
           [type]="hide ? 'password' : 'text'">
         <mat-icon matSuffix class="cursor-pointer" (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}
         </mat-icon>

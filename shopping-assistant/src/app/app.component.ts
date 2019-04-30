@@ -11,14 +11,22 @@ import { UserServiceService } from './user-service.service';
 export class AppComponent {
   title = 'shopping-assistant';
   showSidenav = false;
-  loggedIn = false;
-  user: User;
+  loggedIn = localStorage.getItem('currentUser') ? true : false;
+  user: User = !localStorage.getItem('currentUser') ? new User('', '', '') : JSON.parse(localStorage.getItem('currentUser'));
 
-  constructor(private sharedService: SharedServiceService) {
+  constructor(private sharedService: SharedServiceService, private usersService: UserServiceService) {
     this.sharedService.changeEmitted$.subscribe(
       user => {
-        this.onLoggedIn(user);
+        this.loggedIn = this.usersService.onUserStatusChanged(user);
+
+        if (this.loggedIn) {
+          this.user = JSON.parse(localStorage.getItem('currentUser'));
+        }
       });
+  }
+
+  ngOninit() {
+
   }
 
   openSidenav() {
@@ -28,8 +36,7 @@ export class AppComponent {
     this.showSidenav = false;
   }
 
-  onLoggedIn(user: User) {
-    this.loggedIn = true;
-    this.user = user;
+  onLoggedOut() {
+    this.sharedService.emitChange({});
   }
 }

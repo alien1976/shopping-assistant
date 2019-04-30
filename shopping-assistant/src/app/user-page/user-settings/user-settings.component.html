@@ -1,0 +1,39 @@
+<div class="margin-top" fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="2" fxLayoutAlign="center start"
+  fxLayoutAlign.xs="center stretch">
+  <div fxLayout="column" fxLayoutAlign="center center" fxFlex="grow">
+    <form [formGroup]="userSettingsForm">
+      <mat-form-field appearance="outline">
+        <mat-label>User name</mat-label>
+        <input matInput formControlName="userName" placeholder="Enter your user name">
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-error *ngIf="userSettingsForm.invalid">{{getUserNameErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </form>
+  </div>
+  <div fxLayout="column" fxLayoutAlign="center center" fxFlex="grow">
+    <form [formGroup]="userSettingsForm">
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" placeholder="Enter your password"
+          [type]="hide ? 'password' : 'text'">
+        <mat-icon matSuffix class="cursor-pointer" (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}
+        </mat-icon>
+        <mat-error *ngIf="userSettingsForm.invalid">{{getPasswordErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </form>
+  </div>
+  <div fxLayout="column" fxLayoutAlign="center center" fxFlex="grow">
+    <form [formGroup]="userSettingsForm">
+      <mat-form-field appearance="outline">
+        <mat-label>e-mail</mat-label>
+        <input matInput formControlName="email" placeholder="Enter your email">
+        <mat-icon matSuffix>email</mat-icon>
+        <mat-error *ngIf="userSettingsForm.invalid">{{getEmailErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </form>
+  </div>
+  <div fxLayout="column" fxLayoutAlign="center center" fxFlex="grow">
+    <button mat-button type="submit" (click)="onSave()" [disabled]="!userSettingsForm.valid">Save</button>
+    <button mat-button (click)="onReset()">Reset</button>
+  </div>
+</div>
