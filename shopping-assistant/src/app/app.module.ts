@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ShopsChoiceComponent } from './shops-choice/shops-choice.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule } from '@angular/material';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -49,6 +50,7 @@ import { ManageShopsComponent } from './user-page/manage-shops/manage-shops.comp
     MatTabsModule,
     MatAutocompleteModule,
     MatTableModule,
+    MatExpansionModule,
     MatSortModule,
     MatPaginatorModule,
     MatFormFieldModule,

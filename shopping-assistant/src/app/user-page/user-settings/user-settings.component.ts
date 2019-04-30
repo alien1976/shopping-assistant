@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class UserSettingsComponent implements OnInit {
   @Input() user: User;
+  @Input() userEditing = false;
   users: User[];
   userSettingsForm: FormGroup;
   hide = true;
@@ -112,8 +113,11 @@ export class UserSettingsComponent implements OnInit {
       this.user.favoriteShops);
     this.usersService.updateUser(this.user, newUser);
     this.user = newUser;
-    this.sharedService.emitChange(newUser);
-    this.router.navigate([`/users/${newUser.name}`]);
+
+    if (!this.userEditing) {
+      this.sharedService.emitChange(newUser);
+      this.router.navigate([`/users/${newUser.name}`]);
+    }
   }
 
   onReset() {

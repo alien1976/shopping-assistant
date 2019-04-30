@@ -1,44 +1,73 @@
-<button mat-raised-button (click)="addUser()"> Add user </button>
+<div *ngIf="!(userEditing)">
+  <button mat-raised-button (click)="addUser()"> Add user </button>
 
-<mat-form-field>
-  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-</mat-form-field>
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
 
-<div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource" matSort>
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
 
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> User name</th>
-      <td mat-cell *matCellDef="let row"> {{row.name}} </td>
-    </ng-container>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> User name</th>
+        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+      </ng-container>
 
-    <ng-container matColumnDef="email">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> E-mail </th>
-      <td mat-cell *matCellDef="let row"> {{row.email}} </td>
-    </ng-container>
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> E-mail </th>
+        <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+      </ng-container>
 
-    <ng-container matColumnDef="edit">
-      <th mat-header-cell *matHeaderCellDef> Edit user </th>
-      <td mat-cell *matCellDef="let row">
-        <i (click)=editUser(row) class="material-icons cursor-pointer">
-          edit
-        </i>
-      </td>
-    </ng-container>
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef> Edit user </th>
+        <td mat-cell *matCellDef="let row">
+          <i (click)=editUser(row) class="material-icons cursor-pointer">
+            edit
+          </i>
+        </td>
+      </ng-container>
 
-    <ng-container matColumnDef="delete">
-      <th mat-header-cell *matHeaderCellDef> Delete user </th>
-      <td mat-cell *matCellDef="let row">
-        <i (click)="deleteUser(row)" class="material-icons cursor-pointer">
-          delete
-        </i>
-      </td>
-    </ng-container>
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> Delete user </th>
+        <td mat-cell *matCellDef="let row">
+          <i (click)="deleteUser(row)" class="material-icons cursor-pointer">
+            delete
+          </i>
+        </td>
+      </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
-    </tr>
-  </table>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+    </table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+</div>
+<div *ngIf="userEditing">
+  <button mat-raised-button (click)="userEditing=false">Return to the table</button>
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Personal user data
+        </mat-panel-title>
+        <mat-panel-description>
+          Edit {{currentUserEdited.name}} personal data
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <sa-user-settings [user]="currentUserEdited" [userEditing]="userEditing"></sa-user-settings>
+    </mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Favorite user products
+        </mat-panel-title>
+        <mat-panel-description>
+          Edit {{currentUserEdited.name}} favorite products
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>I'm visible because I am open</p>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>

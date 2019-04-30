@@ -10,7 +10,8 @@ import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 })
 export class ManageUsersComponent implements OnInit {
   users: User[];
-  hide = true;
+  userEditing: boolean;
+  currentUserEdited: User;
   displayedColumns: string[] = ['name', 'email', 'edit', 'delete'];
   dataSource: MatTableDataSource<User>;
 
@@ -21,6 +22,8 @@ export class ManageUsersComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.userEditing = false;
+    this.currentUserEdited = null;
     this.usersService.getAllUsers().subscribe((users) => {
       this.users = users;
       this.dataSource = new MatTableDataSource(users);
@@ -34,6 +37,11 @@ export class ManageUsersComponent implements OnInit {
       this.users = users;
       this.dataSource.data = this.users;
     });
+  }
+
+  editUser(user: User) {
+    this.currentUserEdited = user;
+    this.userEditing = true;
   }
 
   deleteUser(user: User) {
