@@ -13,14 +13,15 @@ import { UserServiceService } from '../user-service.service';
       <ng-content></ng-content>
       <span class="example-spacer"></span>
       <div *ngIf="loggedIn">
-        {{user.name}}
-      </div>
-      <div *ngIf="loggedIn">
         <a [routerLink]="['/users', user.name, {activeTab: 'shops'}]">
-          <i class="material-icons cursor-pointer">
+          <i class="mat-icon-alignment material-icons cursor-pointer">
             star
           </i>
         </a>
+        <a [routerLink]="['/users', user.name, {activeTab: 'settings'}]">
+          <mat-icon class="mat-icon-alignment cursor-pointer">account_circle</mat-icon>
+        </a>
+        {{user.name}}
       </div>
       <button mat-icon-button (click)="goBack()">
         <mat-icon>arrow_back_ios</mat-icon>
@@ -31,6 +32,16 @@ import { UserServiceService } from '../user-service.service';
     `
     .example-spacer {
       flex: 1 1 auto;
+    }
+
+    mat-toolbar a {
+      color: white;
+    }
+
+    .mat-icon-alignment {
+      vertical-align: middle;
+      padding-bottom: 3px;
+      margin-right: 2px;
     }
 
   `

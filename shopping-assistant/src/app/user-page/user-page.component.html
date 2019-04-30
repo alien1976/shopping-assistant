@@ -1,8 +1,5 @@
 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="2" fxLayoutAlign="center start"
   fxLayoutAlign.xs="center stretch">
-  <div fxLayout="column" fxLayoutAlign="center center" fxFlex="grow">
-    <h1 class="center" fxFlex="grow">Hello "{{user.name}}"</h1>
-  </div>
   <div fxLayout="column" fxLayoutAlign="center center" fxFlex="grow" fxFlex.xs="100">
     <mat-tab-group (selectedTabChange)="onTabChange($event)" [selectedIndex]="activeTabIndex" mat-align-tabs="center"
       animationDuration="0ms" mat-stretch-tabs class="full-width">
@@ -12,7 +9,9 @@
       <mat-tab label="Favorite products"> Content 2 </mat-tab>
       <mat-tab label="Favorite shops"> Content 3 </mat-tab>
       <mat-tab label="Favorite routes"> Content 3 </mat-tab>
-      <mat-tab *ngIf="user.isAdmin" label="Manage users"> Content 3 </mat-tab>
+      <mat-tab *ngIf="user.isAdmin" label="Manage users">
+        <sa-manage-users></sa-manage-users>
+      </mat-tab>
       <mat-tab *ngIf="user.isAdmin" label="Manage shops"> Content 3 </mat-tab>
     </mat-tab-group>
   </div>

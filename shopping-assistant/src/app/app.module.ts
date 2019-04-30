@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { ShopsChoiceComponent } from './shops-choice/shops-choice.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule } from '@angular/material';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -20,6 +23,7 @@ import { ProductSearchBarComponent } from './product-search-bar/product-search-b
 import { UserLoginComponent } from './user-login/user-login.component';
 import { UserPageComponent } from './user-page/user-page.component';
 import { UserSettingsComponent } from './user-page/user-settings/user-settings.component';
+import { ManageUsersComponent } from './user-page/manage-users/manage-users.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +33,8 @@ import { UserSettingsComponent } from './user-page/user-settings/user-settings.c
     ProductSearchBarComponent,
     UserLoginComponent,
     UserPageComponent,
-    UserSettingsComponent
+    UserSettingsComponent,
+    ManageUsersComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +46,9 @@ import { UserSettingsComponent } from './user-page/user-settings/user-settings.c
     MatIconModule,
     MatTabsModule,
     MatAutocompleteModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
