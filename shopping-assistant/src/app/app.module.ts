@@ -24,6 +24,7 @@ import { UserLoginComponent } from './user-login/user-login.component';
 import { UserPageComponent } from './user-page/user-page.component';
 import { UserSettingsComponent } from './user-page/user-settings/user-settings.component';
 import { ManageUsersComponent } from './user-page/manage-users/manage-users.component';
+import { ManageShopsComponent } from './user-page/manage-shops/manage-shops.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ManageUsersComponent } from './user-page/manage-users/manage-users.comp
     UserLoginComponent,
     UserPageComponent,
     UserSettingsComponent,
-    ManageUsersComponent
+    ManageUsersComponent,
+    ManageShopsComponent
   ],
   imports: [
     BrowserModule,

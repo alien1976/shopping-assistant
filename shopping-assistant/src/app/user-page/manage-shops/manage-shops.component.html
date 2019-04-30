@@ -1,4 +1,4 @@
-<button mat-raised-button (click)="addUser()"> Add user </button>
+<button mat-raised-button (click)="addShop()"> Add shop </button>
 
 <mat-form-field>
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
@@ -7,29 +7,29 @@
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort>
 
+    <ng-container matColumnDef="logo">
+      <th mat-header-cell *matHeaderCellDef> Logo </th>
+      <td mat-cell *matCellDef="let row"><img [src]="row.logo" [alt]="row.name"> </td>
+    </ng-container>
+
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> User name</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Shop name</th>
       <td mat-cell *matCellDef="let row"> {{row.name}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="email">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> E-mail </th>
-      <td mat-cell *matCellDef="let row"> {{row.email}} </td>
-    </ng-container>
-
     <ng-container matColumnDef="edit">
-      <th mat-header-cell *matHeaderCellDef> Edit user </th>
+      <th mat-header-cell *matHeaderCellDef> Edit shop </th>
       <td mat-cell *matCellDef="let row">
-        <i (click)=editUser(row) class="material-icons cursor-pointer">
+        <i (click)=editShop(row) class="material-icons cursor-pointer">
           edit
         </i>
       </td>
     </ng-container>
 
     <ng-container matColumnDef="delete">
-      <th mat-header-cell *matHeaderCellDef> Delete user </th>
+      <th mat-header-cell *matHeaderCellDef> Delete shop </th>
       <td mat-cell *matCellDef="let row">
-        <i (click)="deleteUser(row)" class="material-icons cursor-pointer">
+        <i (click)="deleteShop(row)" class="material-icons cursor-pointer">
           delete
         </i>
       </td>
