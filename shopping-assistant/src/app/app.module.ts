@@ -28,6 +28,7 @@ import { UserSettingsComponent } from './user-page/user-settings/user-settings.c
 import { ManageUsersComponent } from './user-page/manage-users/manage-users.component';
 import { ManageShopsComponent } from './user-page/manage-shops/manage-shops.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
+import { ManageProductsComponent } from './user-page/manage-products/manage-products.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { UserRegisterComponent } from './user-register/user-register.component';
     UserSettingsComponent,
     ManageUsersComponent,
     ManageShopsComponent,
-    UserRegisterComponent
+    UserRegisterComponent,
+    ManageProductsComponent
   ],
   imports: [
     BrowserModule,

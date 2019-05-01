@@ -18,7 +18,8 @@ export class UserPageComponent implements OnInit {
     'shops',
     'routes',
     'manageUsers',
-    'manageShops'
+    'manageShops',
+    'manageProducts'
   ];
   constructor(private route: ActivatedRoute,
     private router: Router,

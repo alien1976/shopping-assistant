@@ -15,6 +15,9 @@
       <mat-tab *ngIf="user.isAdmin" label="Manage shops">
         <sa-manage-shops></sa-manage-shops>
       </mat-tab>
+      <mat-tab *ngIf="user.isAdmin" label="Manage products">
+        <sa-manage-products></sa-manage-products>
+      </mat-tab>
     </mat-tab-group>
   </div>
 </div>
