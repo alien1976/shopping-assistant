@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { MOCK_USERS } from './mock-data';
 import { Observable, of } from 'rxjs';
 import { User } from './user-model';
+import { ValidatorFn, AbstractControl } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -56,5 +57,18 @@ export class UserServiceService {
       localStorage.removeItem('currentUser');
       return false;
     }
+  }
+
+  isUserPropExists(prop: string, formControlName: string): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const res = {};
+      this.users.forEach((user) => {
+        if (user[prop] === control.value) {
+          res[formControlName] = true;
+          return res;
+        }
+      });
+      return Object.keys(res).length >= 0 ? res : null;
+    };
   }
 }

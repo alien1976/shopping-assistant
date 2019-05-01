@@ -1,0 +1,55 @@
+<mat-horizontal-stepper [linear]="1" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Fill out your user name</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="User name" formControlName="userName" required>
+        <mat-error *ngIf="firstFormGroup.invalid">
+          {{getUserNameErrorMessage()}}
+        </mat-error>
+      </mat-form-field>
+      <div>
+        <button mat-button [disabled]="!firstFormGroup.valid" matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Fill out your e-mail address</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="E-mail address" formControlName="email" required>
+        <mat-error *ngIf="secondFormGroup.invalid">
+          {{getEmailErrorMessage()}}
+        </mat-error>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button [disabled]="!secondFormGroup.valid" matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="thirdFormGroup">
+    <form [formGroup]="thirdFormGroup">
+      <ng-template matStepLabel>Fill out your password</ng-template>
+      <mat-form-field>
+        <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+        <mat-icon matSuffix class="cursor-pointer" (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}
+        </mat-icon>
+        <!-- <input matInput placeholder="password" formControlName="password" required> -->
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button [disabled]="!thirdFormGroup.valid" matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    You are now done.
+    <div>
+      <button mat-button (click)="onFinish()">Register</button>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

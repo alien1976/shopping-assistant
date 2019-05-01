@@ -7,6 +7,7 @@ import { ShopsChoiceComponent } from './shops-choice/shops-choice.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule } from '@angular/material';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatStepperModule } from '@angular/material/stepper';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -26,6 +27,7 @@ import { UserPageComponent } from './user-page/user-page.component';
 import { UserSettingsComponent } from './user-page/user-settings/user-settings.component';
 import { ManageUsersComponent } from './user-page/manage-users/manage-users.component';
 import { ManageShopsComponent } from './user-page/manage-shops/manage-shops.component';
+import { UserRegisterComponent } from './user-register/user-register.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { ManageShopsComponent } from './user-page/manage-shops/manage-shops.comp
     UserPageComponent,
     UserSettingsComponent,
     ManageUsersComponent,
-    ManageShopsComponent
+    ManageShopsComponent,
+    UserRegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +52,7 @@ import { ManageShopsComponent } from './user-page/manage-shops/manage-shops.comp
     MatIconModule,
     MatTabsModule,
     MatAutocompleteModule,
+    MatStepperModule,
     MatTableModule,
     MatExpansionModule,
     MatSortModule,
