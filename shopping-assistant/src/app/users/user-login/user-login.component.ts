@@ -1,10 +1,10 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { User } from '../user-model';
-import { UserServiceService } from '../user-service.service';
+import { FormGroup } from '@angular/forms';
+import { User } from '../../user-model';
+import { UserServiceService } from '../../user-service.service';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { SharedServiceService } from '../shared-service.service';
+import { SharedServiceService } from '../../shared-service.service';
 import { Router } from '@angular/router';
 
 @Component({

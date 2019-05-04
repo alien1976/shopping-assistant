@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ShopsChoiceComponent } from './shops-choice/shops-choice.component';
+import { ShopsChoiceComponent } from './shops/shops-choice/shops-choice.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule } from '@angular/material';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -22,18 +22,18 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NavigationModule } from './navigation/navigation.module';
-import { ShopItemComponent } from './shop-item/shop-item.component';
+import { ShopItemComponent } from './shops/shop-item/shop-item.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ProductSearchBarComponent } from './product-search-bar/product-search-bar.component';
-import { UserLoginComponent } from './user-login/user-login.component';
+import { ProductSearchBarComponent } from './products/product-search-bar/product-search-bar.component';
+import { UserLoginComponent } from './users/user-login/user-login.component';
 import { UserPageComponent } from './user-page/user-page.component';
 import { UserSettingsComponent } from './user-page/user-settings/user-settings.component';
 import { ManageUsersComponent } from './user-page/manage-users/manage-users.component';
 import { ManageShopsComponent } from './user-page/manage-shops/manage-shops.component';
-import { UserRegisterComponent } from './user-register/user-register.component';
+import { UserRegisterComponent } from './users/user-register/user-register.component';
 import { ManageProductsComponent } from './user-page/manage-products/manage-products.component';
-import { ProductsPageComponent } from './products-page/products-page.component';
-import { ProductCardComponent } from './product-card/product-card.component';
+import { ProductsPageComponent } from './products/products-page/products-page.component';
+import { ProductCardComponent } from './products/product-card/product-card.component';
 
 @NgModule({
   declarations: [

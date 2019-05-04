@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Product } from '../product-model';
-import { ProductsServiceService } from '../products-service.service';
-import { Shop } from '../shops-model';
-import { ShopsServiceService } from '../shops-service.service';
+import { Product } from '../../product-model';
+import { ProductsServiceService } from '../../products-service.service';
+import { Shop } from '../../shops-model';
+import { ShopsServiceService } from '../../shops-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 

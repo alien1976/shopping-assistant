@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserServiceService } from '../user-service.service';
+import { UserServiceService } from '../../user-service.service';
 import { Router } from '@angular/router';
-import { User } from '../user-model';
+import { User } from '../../user-model';
 
 @Component({
   selector: 'sa-user-register',
