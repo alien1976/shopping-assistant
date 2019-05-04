@@ -1,3 +1,6 @@
+<div *ngFor="let shopsProducts of user.favoriteProducts">
+  {{shopProducts}}
+</div>
 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="2" fxLayoutAlign="center start"
   fxLayoutAlign.xs="center stretch">
   <div fxLayout="column" fxLayoutAlign="center center" fxFlex="grow" fxFlex.xs="100">
@@ -6,9 +9,17 @@
       <mat-tab label="User settings">
         <sa-user-settings [user]="user"></sa-user-settings>
       </mat-tab>
-      <mat-tab label="Favorite products"> Content 2 </mat-tab>
-      <mat-tab label="Favorite shops"> Content 3 </mat-tab>
-      <mat-tab label="Favorite routes"> Content 3 </mat-tab>
+      <mat-tab fxLayout="row wrap" label="Favorite products">
+        <sa-product-card *ngFor="let shopsProducts of user.favoriteProducts" fxLayout="row wrap"
+          fxLayoutAlign="center center" fxFlex="100" fxFlex.xs="100" [shopProducts]="shopsProducts"></sa-product-card>
+        <button mat-raised-button matTooltip="Back to Top" (click)="topFunction()" id="myBtn">
+          <i class="material-icons">
+            keyboard_arrow_up
+          </i>
+        </button>
+      </mat-tab>
+      <mat-tab label="Favorite shops"> Content 4 </mat-tab>
+      <mat-tab label="Favorite routes"> Content 5 </mat-tab>
       <mat-tab *ngIf="user.isAdmin" label="Manage users">
         <sa-manage-users></sa-manage-users>
       </mat-tab>

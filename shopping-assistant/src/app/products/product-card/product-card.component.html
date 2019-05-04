@@ -1,5 +1,6 @@
 <div fxFlex="100" fxLayoutAlign="center start">
   <h2>{{shopProducts.shopName}}</h2>
+  <h5>({{shopProducts.products.length}} products)</h5>
 </div>
 <mat-card *ngFor="let product of shopProducts.products" class="example-card">
   <div [ngStyle]="{ 'background-image': 'url(' + product.logo + ')'}" class="img-holder">
@@ -8,8 +9,13 @@
     <mat-card-title>{{product.name}}</mat-card-title>
     <mat-card-subtitle>{{product.price}}</mat-card-subtitle>
     <div class="display-inline">
-      <i class="mat-icon-alignment material-icons cursor-pointer">
+      <i *ngIf="isFavorite(product)" (click)="removeFromFavorites(product)"
+        class="mat-icon-alignment material-icons cursor-pointer">
         star
+      </i>
+      <i *ngIf="!isFavorite(product)" (click)="addToFavorites(product)"
+        class="mat-icon-alignment material-icons cursor-pointer">
+        star_border
       </i>
     </div>
   </mat-card-header>

@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ShopsChoiceComponent } from './shops/shops-choice/shops-choice.component';
 import { ShopItemComponent } from './shops/shop-item/shop-item.component';
 import { UserLoginComponent } from './users/user-login/user-login.component';
-import { UserPageComponent } from './user-page/user-page.component';
+import { UserPageComponent } from './users/user-page/user-page.component';
 import { UserRegisterComponent } from './users/user-register/user-register.component';
 import { ProductsPageComponent } from './products/products-page/products-page.component';
 

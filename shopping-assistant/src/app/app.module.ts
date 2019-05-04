@@ -7,6 +7,7 @@ import { ShopsChoiceComponent } from './shops/shops-choice/shops-choice.componen
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule } from '@angular/material';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -26,12 +27,12 @@ import { ShopItemComponent } from './shops/shop-item/shop-item.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProductSearchBarComponent } from './products/product-search-bar/product-search-bar.component';
 import { UserLoginComponent } from './users/user-login/user-login.component';
-import { UserPageComponent } from './user-page/user-page.component';
-import { UserSettingsComponent } from './user-page/user-settings/user-settings.component';
-import { ManageUsersComponent } from './user-page/manage-users/manage-users.component';
-import { ManageShopsComponent } from './user-page/manage-shops/manage-shops.component';
+import { UserPageComponent } from './users/user-page/user-page.component';
+import { UserSettingsComponent } from './users/user-page/user-settings/user-settings.component';
+import { ManageUsersComponent } from './users/user-page/manage-users/manage-users.component';
+import { ManageShopsComponent } from './users/user-page/manage-shops/manage-shops.component';
 import { UserRegisterComponent } from './users/user-register/user-register.component';
-import { ManageProductsComponent } from './user-page/manage-products/manage-products.component';
+import { ManageProductsComponent } from './users/user-page/manage-products/manage-products.component';
 import { ProductsPageComponent } from './products/products-page/products-page.component';
 import { ProductCardComponent } from './products/product-card/product-card.component';
 
@@ -61,6 +62,7 @@ import { ProductCardComponent } from './products/product-card/product-card.compo
     MatIconModule,
     MatTabsModule,
     MatAutocompleteModule,
+    MatSnackBarModule,
     ScrollingModule,
     MatTooltipModule,
     MatStepperModule,

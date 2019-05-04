@@ -35,6 +35,7 @@ export class UserPageComponent implements OnInit {
         this.activeTabIndex = activeTabIndex !== -1 ? activeTabIndex : 0;
         this.usersService.getUser(userName).subscribe((user) => {
           this.user = user;
+          console.log(this.user);
         });
       }
     );
@@ -43,5 +44,10 @@ export class UserPageComponent implements OnInit {
   onTabChange(event: any) {
     this.activeTabIndex = event.index;
     this.router.navigate([`/users/${this.user.name}`, { activeTab: this.tabs[this.activeTabIndex] }]);
+  }
+
+  topFunction() {
+    const element = document.querySelector('mat-toolbar');
+    element.scrollIntoView();
   }
 }

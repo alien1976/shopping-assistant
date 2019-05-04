@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Product } from '../../product-model';
+import { User } from 'src/app/user-model';
+import { MatSnackBar } from '@angular/material';
+import { UserServiceService } from 'src/app/user-service.service';
 
 @Component({
   selector: 'sa-product-card',
@@ -8,9 +11,68 @@ import { Product } from '../../product-model';
 })
 export class ProductCardComponent implements OnInit {
   @Input() shopProducts: { shopName: string, products: Product[] };
-  constructor() { }
+  user: User;
+  constructor(private snackBar: MatSnackBar, private userService: UserServiceService) { }
 
   ngOnInit() {
+    this.user = window.localStorage.getItem('currentUser')
+      ? JSON.parse(window.localStorage.getItem('currentUser'))
+      : null;
+  }
+
+  isFavorite(product: Product) {
+    if (this.user && this.user.favoriteProducts) {
+      const shopIndex = this.user.favoriteProducts.findIndex((el) => el.shopName === this.shopProducts.shopName);
+      const productIndex = shopIndex !== -1
+        ? this.user.favoriteProducts[shopIndex].products.findIndex((el) => el.name === product.name && el.price === product.price)
+        : -1;
+
+      return productIndex !== -1;
+    } else {
+      return false;
+    }
+  }
+
+  addToFavorites(product: Product) {
+    if (this.user) {
+      const shopIndex = this.user.favoriteProducts.findIndex((el) => el.shopName === this.shopProducts.shopName);
+
+      if (shopIndex === -1) {
+        this.user.favoriteProducts.push({ shopName: this.shopProducts.shopName, products: [product] });
+      } else {
+        this.user.favoriteProducts[shopIndex].products.push(product);
+      }
+
+      this.userService.updateUser(this.user, this.user);
+      window.localStorage.setItem('currentUser', JSON.stringify(this.user));
+      this.snackBar.open(product.name + ' is added to favorites!', '', {
+        duration: 2000
+      });
+    } else {
+      this.snackBar.open('To do this you should first log in!', '', {
+        duration: 2000
+      });
+    }
+  }
+
+  removeFromFavorites(product: Product) {
+    if (this.user) {
+      const shopIndex = this.user.favoriteProducts.findIndex((el) => el.shopName === this.shopProducts.shopName);
+      const productIndex = shopIndex !== -1
+        ? this.user.favoriteProducts[shopIndex].products.findIndex((el) => el.name === product.name && el.price === product.price)
+        : -1;
+
+      this.user.favoriteProducts[shopIndex].products.splice(productIndex, 1);
+      this.userService.updateUser(this.user, this.user);
+      window.localStorage.setItem('currentUser', JSON.stringify(this.user));
+      this.snackBar.open(product.name + ' is removed from favorites!', '', {
+        duration: 2000
+      });
+    } else {
+      this.snackBar.open('To do this you should first log in!', '', {
+        duration: 2000
+      });
+    }
   }
 
 }
