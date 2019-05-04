@@ -1,0 +1,71 @@
+<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="2" fxLayoutAlign="center start"
+  fxLayoutAlign.xs="center stretch">
+  <div ngClass.lg="fixed-menu" ngClass.md="fixed-menu" ngClass.sm="fixed-menu" fxLayout="column"
+    fxLayoutAlign="start start" fxFlex="none" fxFlex.xs="100">
+
+    <mat-expansion-panel class="full-width">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Choose shops
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div *ngFor="let shop of shops">
+        <mat-checkbox checked="true" (change)="onShopChanged($event.checked,shop)" class="example-margin">
+          {{shop.name}}
+        </mat-checkbox>
+      </div>
+    </mat-expansion-panel>
+    <hr>
+
+    <mat-expansion-panel class="full-width">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Choose product price
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <form [formGroup]="priceForm">
+        <div>
+          <mat-form-field>
+            <input matInput (change)="shopProductsFilter()" value="0" autocomplete="off" type="number"
+              placeholder="Enter a start price" formControlName="minPrice" min="0" [max]="maxProductPrice">
+            <mat-error *ngIf="priceForm.get('minPrice')?.invalid">Min price: 0</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field>
+            <input matInput (change)="shopProductsFilter()" [value]="maxProductPrice" autocomplete="off" type="number"
+              placeholder="Enter a max price" formControlName="maxPrice" min="0" [max]="maxProductPrice">
+            <mat-error *ngIf="priceForm.get('maxPrice')?.invalid">Max price: {{maxProductPrice}}</mat-error>
+          </mat-form-field>
+        </div>
+      </form>
+    </mat-expansion-panel>
+
+    <hr>
+    <mat-expansion-panel class="full-width">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Keyword search
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-form-field>
+        <input autocomplete="off" (input)="searchValue=$event.target.value;shopProductsFilter()"
+          placeholder="Enter a keyword" matInput>
+      </mat-form-field>
+    </mat-expansion-panel>
+    <hr>
+
+  </div>
+  <div fxLayout="column" fxLayoutAlign="center center" fxFlexOffset="1" fxFlexOffset.xs="0" fxFlex fxFlex.xs="100">
+    <sa-product-card *ngFor="let shopsProducts of currentShopProducts" fxLayout="row wrap" fxLayoutAlign="center center"
+      fxFlex="100" fxFlex.xs="100" [shopProducts]="shopsProducts"></sa-product-card>
+
+    <button mat-raised-button matTooltip="Back to Top" (click)="topFunction()" id="myBtn">
+      <i class="material-icons">
+        keyboard_arrow_up
+      </i>
+    </button>
+  </div>
+</div>

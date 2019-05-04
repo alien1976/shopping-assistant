@@ -7,6 +7,9 @@ import { ShopsChoiceComponent } from './shops-choice/shops-choice.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule } from '@angular/material';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
@@ -29,6 +32,8 @@ import { ManageUsersComponent } from './user-page/manage-users/manage-users.comp
 import { ManageShopsComponent } from './user-page/manage-shops/manage-shops.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
 import { ManageProductsComponent } from './user-page/manage-products/manage-products.component';
+import { ProductsPageComponent } from './products-page/products-page.component';
+import { ProductCardComponent } from './product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +47,9 @@ import { ManageProductsComponent } from './user-page/manage-products/manage-prod
     ManageUsersComponent,
     ManageShopsComponent,
     UserRegisterComponent,
-    ManageProductsComponent
+    ManageProductsComponent,
+    ProductsPageComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +61,10 @@ import { ManageProductsComponent } from './user-page/manage-products/manage-prod
     MatIconModule,
     MatTabsModule,
     MatAutocompleteModule,
+    ScrollingModule,
+    MatTooltipModule,
     MatStepperModule,
+    MatCheckboxModule,
     MatTableModule,
     MatExpansionModule,
     MatSortModule,

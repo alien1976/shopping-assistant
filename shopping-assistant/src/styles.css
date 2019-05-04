@@ -6,6 +6,10 @@ h1 {
     font-size: 3.5vw;
 }
 
+h2 {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
 /* Custom scroll css */
 
 ::-webkit-scrollbar-track {

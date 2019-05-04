@@ -33,7 +33,7 @@
     </form>
   </div>
   <div fxLayout="column" fxLayoutAlign="center center" fxFlex="grow">
-    <button mat-button type="submit" (click)="onSave()" [disabled]="!userSettingsForm.valid">Save</button>
+    <button mat-button type="submit" (click)="onSave()" [disabled]="userSettingsForm.invalid">Save</button>
     <button mat-button (click)="onReset()">Reset</button>
   </div>
 </div>

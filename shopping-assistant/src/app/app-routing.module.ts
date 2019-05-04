@@ -5,6 +5,7 @@ import { ShopItemComponent } from './shop-item/shop-item.component';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { UserPageComponent } from './user-page/user-page.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
+import { ProductsPageComponent } from './products-page/products-page.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'users/:name', component: UserPageComponent },
   { path: 'login', component: UserLoginComponent },
   { path: 'register', component: UserRegisterComponent },
+  { path: 'products', component: ProductsPageComponent },
   { path: '', redirectTo: '/shops', pathMatch: 'full' }
 ];
 

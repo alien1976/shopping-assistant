@@ -1,0 +1,16 @@
+<div fxFlex="100" fxLayoutAlign="center start">
+  <h2>{{shopProducts.shopName}}</h2>
+</div>
+<mat-card *ngFor="let product of shopProducts.products" class="example-card">
+  <div [ngStyle]="{ 'background-image': 'url(' + product.logo + ')'}" class="img-holder">
+  </div>
+  <mat-card-header class="margin-top">
+    <mat-card-title>{{product.name}}</mat-card-title>
+    <mat-card-subtitle>{{product.price}}</mat-card-subtitle>
+    <div class="display-inline">
+      <i class="mat-icon-alignment material-icons cursor-pointer">
+        star
+      </i>
+    </div>
+  </mat-card-header>
+</mat-card>

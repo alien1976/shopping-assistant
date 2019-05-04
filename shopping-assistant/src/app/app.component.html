@@ -16,13 +16,9 @@
                 hint="Manage profile" tabindex="-1">
                 Profile
             </sa-nav-item>
-            <sa-nav-item (navigate)="closeSidenav()" routerLink="/products" icon="view_list" hint="Manage Products"
+            <sa-nav-item (navigate)="closeSidenav()" routerLink="/products" icon="view_list" hint="Available Products"
                 tabindex="-1">
                 Products
-            </sa-nav-item>
-            <sa-nav-item (navigate)="closeSidenav()" *ngIf="loggedIn" routerLink="/challenges" icon="view_list"
-                hint="Manage challenges" tabindex="-1">
-                Challenges
             </sa-nav-item>
             <sa-nav-item (navigate)="closeSidenav()" *ngIf="loggedIn" routerLink="/users" icon="people"
                 hint="Manage users" tabindex="-1">
