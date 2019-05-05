@@ -5,6 +5,8 @@ import { Shop } from '../../shops-model';
 import { ShopsServiceService } from '../../shops-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
+import { FormControl, Validators } from '@angular/forms';
+import { User } from 'src/app/user-model';
 
 @Component({
   selector: 'sa-shop-item',
@@ -14,6 +16,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class ShopItemComponent implements OnInit {
   @Input() shop: Shop;
 
+  user: User;
   products: Product[];
   selectedProducts: Product[];
   totalPrice: number = 0;
@@ -22,8 +25,15 @@ export class ShopItemComponent implements OnInit {
     private shopService: ShopsServiceService,
     private sanitizer: DomSanitizer) { }
 
+  routeFormControl = new FormControl('', [
+    Validators.required
+  ]);
+
   ngOnInit() {
     this.selectedProducts = [];
+    this.user = window.localStorage.getItem('currentUser')
+      ? JSON.parse(window.localStorage.getItem('currentUser'))
+      : null;
     // TODO: get selected products for the user saved paths for ex.
     this.getShop();
   }
@@ -74,5 +84,21 @@ export class ShopItemComponent implements OnInit {
     this.selectedProducts.forEach((el) => {
       this.totalPrice += el.price;
     });
+  }
+
+  onProductsCategoryChange(value: string) {
+    switch (value) {
+      case 'shopProducts': {
+        this.products = this.shop.products;
+        break;
+      }
+      case 'favoriteProducts': {
+        const shopIndex = this.user.favoriteProducts.findIndex((el) => el.shopName === this.shop.name);
+
+        this.products = shopIndex !== -1 ? this.user.favoriteProducts[shopIndex].products : [];
+        break;
+      }
+      default: break;
+    }
   }
 }

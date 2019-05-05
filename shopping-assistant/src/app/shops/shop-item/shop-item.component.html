@@ -8,11 +8,29 @@
       <img [src]="mapUrl()" alt="">
       <!-- <iframe id="map" [src]="mapUrl()"></iframe> -->
     </div>
-    <div class="full-col-width">
-      Shop info and options asf afaf a sfas fa fa fa fsaf a fas fasa fas fsadzvdvzdvzdvzdvzdvzdvzdvzdvdzvdzvzdvdz
+    <div *ngIf="shop.description" class="full-col-width">
+      <h3>Shop description:</h3>
+      <div>{{shop.description}}</div>
+    </div>
+    <div *ngIf="shop.description" class="full-col-width">
+      <h3>Add route to favorites:</h3>
+      <mat-error *ngIf="!user">You should login to use this feature!</mat-error>
+      <mat-form-field *ngIf="user">
+        <input matInput placeholder="Route name" [formControl]="routeFormControl">
+        <mat-error *ngIf="routeFormControl.hasError('required')">
+          Route name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <button *ngIf="user" mat-button type="submit" (click)="onSaveRoute()" [disabled]="!routeFormControl.valid">Save
+        route</button>
     </div>
   </div>
   <div fxLayout="column" fxLayoutAlign="center center" fxFlex fxFlex.xs="100">
+    <mat-button-toggle-group appearance="legacy" #group="matButtonToggleGroup" value="shopProducts"
+      name="productsCategory" (change)="onProductsCategoryChange(group.value)">
+      <mat-button-toggle *ngIf="user" value="favoriteProducts">Favorite "{{shop.name}}" products</mat-button-toggle>
+      <mat-button-toggle value="shopProducts" selected>"{{shop.name}}" products</mat-button-toggle>
+    </mat-button-toggle-group>
     <sa-product-search-bar (onProductSelected)="productIsSelected($event)" class="full-col-width" [products]="products">
     </sa-product-search-bar>
     <mat-list class="full-col-width">

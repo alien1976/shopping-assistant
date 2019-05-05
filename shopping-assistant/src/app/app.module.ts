@@ -7,6 +7,7 @@ import { ShopsChoiceComponent } from './shops/shops-choice/shops-choice.componen
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule } from '@angular/material';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -62,6 +63,7 @@ import { ProductCardComponent } from './products/product-card/product-card.compo
     MatIconModule,
     MatTabsModule,
     MatAutocompleteModule,
+    MatButtonToggleModule,
     MatSnackBarModule,
     ScrollingModule,
     MatTooltipModule,

@@ -2,16 +2,14 @@
 
 @import '@angular/material/prebuilt-themes/pink-bluegrey.css';
 h1 {
-    font-family: Roboto, "Helvetica Neue", sans-serif;
     font-size: 3.5vw;
 }
 
-h2 {
+* {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 h5 {
-    font-family: Roboto, "Helvetica Neue", sans-serif;
     margin-left: 5px;
     margin-top: 29px;
 }

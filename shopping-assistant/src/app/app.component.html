@@ -20,10 +20,6 @@
                 tabindex="-1">
                 Products
             </sa-nav-item>
-            <sa-nav-item (navigate)="closeSidenav()" *ngIf="loggedIn" routerLink="/users" icon="people"
-                hint="Manage users" tabindex="-1">
-                Users
-            </sa-nav-item>
             <mat-divider *ngIf="loggedIn"></mat-divider>
             <sa-nav-item (navigate)="closeSidenav()" (click)="onLoggedOut()" *ngIf="loggedIn" routerLink="/"
                 icon="exit_to_app" hint="Logout currently logged user" tabindex="-1">

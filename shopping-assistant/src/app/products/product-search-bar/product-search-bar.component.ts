@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { Product } from '../../product-model';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -27,6 +27,15 @@ export class ProductSearchBarComponent implements OnInit {
 
   ngOnInit() {
 
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.products = changes.products.currentValue;
+    this.filteredProducts = this.productsControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(product => product ? this.filterProducts(product) : this.products.slice())
+      );
   }
 
   filterProducts(value: string) {
