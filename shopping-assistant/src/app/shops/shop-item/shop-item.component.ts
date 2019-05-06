@@ -4,7 +4,7 @@ import { ProductsServiceService } from '../../products-service.service';
 import { Shop } from '../../shops-model';
 import { ShopsServiceService } from '../../shops-service.service';
 import { ActivatedRoute } from '@angular/router';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { FormControl, Validators } from '@angular/forms';
 import { User } from 'src/app/user-model';
 
@@ -20,10 +20,13 @@ export class ShopItemComponent implements OnInit {
   products: Product[];
   selectedProducts: Product[];
   totalPrice: number = 0;
+  mapUrl: SafeResourceUrl;
+
   constructor(private route: ActivatedRoute,
     private productService: ProductsServiceService,
     private shopService: ShopsServiceService,
-    private sanitizer: DomSanitizer) { }
+    private sanitizer: DomSanitizer) {
+  }
 
   routeFormControl = new FormControl('', [
     Validators.required
@@ -34,7 +37,7 @@ export class ShopItemComponent implements OnInit {
     this.user = window.localStorage.getItem('currentUser')
       ? JSON.parse(window.localStorage.getItem('currentUser'))
       : null;
-    // TODO: get selected products for the user saved paths for ex.
+
     this.getShop();
   }
 
@@ -45,36 +48,48 @@ export class ShopItemComponent implements OnInit {
       .subscribe((shop) => {
         this.shop = shop;
         this.products = shop.products;
+        this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.shop.map);
       });
-  }
-
-  mapUrl() {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(this.shop.map);
   }
 
   productIsSelected(product: Product) {
     this.selectedProducts.push(product);
-    // this.addToPath(product);
+    this.addToPath(product);
     this.calcTotalPrice();
   }
 
   addToPath(product: Product) {
-    // const map = document.getElementById('map');
-    // const SvgDoc = map.getSVGDocument().children[0];
-    // const ellipse = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
+    const map = document.getElementById('map');
+    const SvgDoc = (map as any).getSVGDocument().children[0];
+    const ellipse = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
 
-    // ellipse.setAttribute('cx', '150');
-    // ellipse.setAttribute('cy', '150');
-    // ellipse.setAttribute('rx', '15');
-    // ellipse.setAttribute('ry', '15');
-    // ellipse.setAttribute('fill', 'rgb(255, 255, 255)');
-    // SvgDoc.appendChild(ellipse);
+    ellipse.setAttribute('cx', product.coords.x.toString());
+    ellipse.setAttribute('cy', product.coords.x.toString());
+    ellipse.setAttribute('rx', '15');
+    ellipse.setAttribute('ry', '15');
+    ellipse.setAttribute('fill', 'rgb(255, 255, 255)');
+    SvgDoc.appendChild(ellipse);
+  }
+
+  removeFromPath(product: Product) {
+    const map = document.getElementById('map');
+    const SvgDoc = (map as any).getSVGDocument().children[0];
+    const ellipses = SvgDoc.querySelectorAll('ellipse');
+    const ellipsesLength = ellipses.length;
+
+    for (let i = 0; i < ellipsesLength; i++) {
+      if (ellipses[i].getAttribute('cx') === product.coords.x.toString()) {
+        ellipses[i].remove();
+        break;
+      }
+    }
   }
 
   productIsDeleted(product: Product) {
     const productIndex = this.selectedProducts.findIndex((el) => el.name === product.name);
 
     this.selectedProducts.splice(productIndex, 1);
+    this.removeFromPath(product);
     this.calcTotalPrice();
   }
 

@@ -5,7 +5,8 @@
   </div>
   <div fxLayout="column" fxLayoutAlign="center center" fxFlex="50" fxFlex.xs="100">
     <div class="map">
-      <img [src]="mapUrl()" alt="">
+      <!-- <img [src]="mapUrl()" alt=""> -->
+      <object id="map" [data]="mapUrl" type="text/xml"></object>
       <!-- <iframe id="map" [src]="mapUrl()"></iframe> -->
     </div>
     <div *ngIf="shop.description" class="full-col-width">
