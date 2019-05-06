@@ -21,6 +21,8 @@ export class ShopItemComponent implements OnInit {
   selectedProducts: Product[];
   totalPrice: number = 0;
   mapUrl: SafeResourceUrl;
+  colorNames = ['red', 'green', 'blue', 'yellow'];
+  currentDotCollor = 0;
 
   constructor(private route: ActivatedRoute,
     private productService: ProductsServiceService,
@@ -64,11 +66,18 @@ export class ShopItemComponent implements OnInit {
     const ellipse = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
 
     ellipse.setAttribute('cx', product.coords.x.toString());
-    ellipse.setAttribute('cy', product.coords.x.toString());
+    ellipse.setAttribute('cy', product.coords.y.toString());
     ellipse.setAttribute('rx', '15');
     ellipse.setAttribute('ry', '15');
-    ellipse.setAttribute('fill', 'rgb(255, 255, 255)');
+    ellipse.setAttribute('fill', this.colorNames[this.currentDotCollor]);
+    ellipse.setAttribute('matTooltip', product.name + '|' + product.price);
     SvgDoc.appendChild(ellipse);
+
+    if (this.currentDotCollor >= this.colorNames.length - 1) {
+      this.currentDotCollor = 0;
+    } else {
+      this.currentDotCollor++;
+    }
   }
 
   removeFromPath(product: Product) {
@@ -77,8 +86,13 @@ export class ShopItemComponent implements OnInit {
     const ellipses = SvgDoc.querySelectorAll('ellipse');
     const ellipsesLength = ellipses.length;
 
+    if (this.currentDotCollor > 0) {
+      this.currentDotCollor--;
+    }
+
     for (let i = 0; i < ellipsesLength; i++) {
-      if (ellipses[i].getAttribute('cx') === product.coords.x.toString()) {
+      if (ellipses[i].getAttribute('cx') === product.coords.x.toString()
+        && ellipses[i].getAttribute('cy') === product.coords.y.toString()) {
         ellipses[i].remove();
         break;
       }

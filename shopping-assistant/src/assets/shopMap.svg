@@ -1,4 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" stroke="none" stroke-linecap="square" stroke-miterlimit="10" version="1.1" viewBox="0.0 0.0 700.0 688.0">
+    <defs>
+        <style>
+            ellipse { stroke: &apos;white&apos;; stroke-width: &apos;2&apos;; transition: fill .4s ease, opacity .4s ease; } ellipse:hover { fill: black; opacity: 0.5; }
+        </style>
+    </defs>
     <clipPath id="p.0">
         <path d="m0 0l700.0 0l0 688.0l-700.0 0l0 -688.0z" clip-rule="nonzero"/>
     </clipPath>
