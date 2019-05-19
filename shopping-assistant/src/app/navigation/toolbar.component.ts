@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { User } from '../user-model';
 import { SharedServiceService } from '../shared-service.service';
-import { UserServiceService } from '../user-service.service';
+import { UserServiceService } from '../users/user-service.service';
 
 @Component({
   selector: 'sa-toolbar',

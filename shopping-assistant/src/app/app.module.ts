@@ -36,6 +36,7 @@ import { UserRegisterComponent } from './users/user-register/user-register.compo
 import { ManageProductsComponent } from './users/user-page/manage-products/manage-products.component';
 import { ProductsPageComponent } from './products/products-page/products-page.component';
 import { ProductCardComponent } from './products/product-card/product-card.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { ProductCardComponent } from './products/product-card/product-card.compo
     ProductCardComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
     MatCardModule,

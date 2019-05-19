@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ShopsServiceService } from '../../shops-service.service';
+import { ShopsServiceService } from '../../shops/shops-service.service';
 import { Shop } from '../../shops-model';
 import { Product } from '../../product-model';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';

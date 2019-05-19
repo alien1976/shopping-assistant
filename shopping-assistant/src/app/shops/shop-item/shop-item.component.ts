@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Product } from '../../product-model';
-import { ProductsServiceService } from '../../products-service.service';
+import { ProductsServiceService } from '../../products/products-service.service';
 import { Shop } from '../../shops-model';
-import { ShopsServiceService } from '../../shops-service.service';
+import { ShopsServiceService } from '../shops-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { FormControl, Validators } from '@angular/forms';

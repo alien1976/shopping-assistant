@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Product } from '../../product-model';
 import { User } from 'src/app/user-model';
 import { MatSnackBar } from '@angular/material';
-import { UserServiceService } from 'src/app/user-service.service';
+import { UserServiceService } from '../../users/user-service.service';
 
 @Component({
   selector: 'sa-product-card',

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Shop } from 'src/app/shops-model';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
-import { ShopsServiceService } from 'src/app/shops-service.service';
+import { ShopsServiceService } from '../../../shops/shops-service.service';
 
 @Component({
   selector: 'sa-manage-shops',

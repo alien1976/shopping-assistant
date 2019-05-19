@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { User } from '../../user-model';
-import { UserServiceService } from '../../user-service.service';
+import { UserServiceService } from '../user-service.service';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { SharedServiceService } from '../../shared-service.service';

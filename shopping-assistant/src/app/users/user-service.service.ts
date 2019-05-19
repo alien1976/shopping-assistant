@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { MOCK_USERS } from './mock-data';
+import { MOCK_USERS } from '../mock-data';
 import { Observable, of } from 'rxjs';
-import { User } from './user-model';
+import { User } from '../user-model';
 import { ValidatorFn, AbstractControl } from '@angular/forms';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +12,27 @@ import { ValidatorFn, AbstractControl } from '@angular/forms';
 export class UserServiceService {
   private users = MOCK_USERS;
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getAllUsers(): Observable<User[]> {
-    return of(this.users);
+    return this.http.get<User[]>('http://localhost:9000/api/users')
+      .pipe(
+        catchError(this.handleError<User[]>('getUsers', []))
+      );;
+  }
+
+  handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+
+      // TODO: better job of transforming error for user consumption
+      console.log(`${operation} failed: ${error.message}`);
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    }
   }
 
   updateUser(oldUser: User, user: User): Observable<User> {
