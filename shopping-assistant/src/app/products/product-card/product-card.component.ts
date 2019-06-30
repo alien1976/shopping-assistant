@@ -21,7 +21,7 @@ export class ProductCardComponent implements OnInit {
   }
 
   isFavorite(product: Product) {
-    if (this.user && this.user.favoriteProducts) {
+    if (this.user && this.user.favoriteProducts && this.user.favoriteProducts.length > 0) {
       const shopIndex = this.user.favoriteProducts.findIndex((el) => el.shopName === this.shopProducts.shopName);
       const productIndex = shopIndex !== -1
         ? this.user.favoriteProducts[shopIndex].products.findIndex((el) => el.name === product.name && el.price === product.price)
@@ -34,7 +34,7 @@ export class ProductCardComponent implements OnInit {
   }
 
   addToFavorites(product: Product) {
-    if (this.user) {
+    if (this.user && this.user.favoriteProducts && this.user.favoriteProducts.length > 0) {
       const shopIndex = this.user.favoriteProducts.findIndex((el) => el.shopName === this.shopProducts.shopName);
 
       if (shopIndex === -1) {
@@ -43,7 +43,7 @@ export class ProductCardComponent implements OnInit {
         this.user.favoriteProducts[shopIndex].products.push(product);
       }
 
-      this.userService.updateUser(this.user, this.user);
+      this.userService.updateUser(this.user);
       window.localStorage.setItem('currentUser', JSON.stringify(this.user));
       this.snackBar.open(product.name + ' is added to favorites!', '', {
         duration: 2000
@@ -63,7 +63,7 @@ export class ProductCardComponent implements OnInit {
         : -1;
 
       this.user.favoriteProducts[shopIndex].products.splice(productIndex, 1);
-      this.userService.updateUser(this.user, this.user);
+      this.userService.updateUser(this.user);
       window.localStorage.setItem('currentUser', JSON.stringify(this.user));
       this.snackBar.open(product.name + ' is removed from favorites!', '', {
         duration: 2000

@@ -10,7 +10,7 @@ import { catchError, map, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class UserServiceService {
-  private users = MOCK_USERS;
+  // private users = MOCK_USERS;
 
   constructor(private http: HttpClient) { }
 
@@ -18,7 +18,7 @@ export class UserServiceService {
     return this.http.get<User[]>('http://localhost:9000/api/users')
       .pipe(
         catchError(this.handleError<User[]>('getUsers', []))
-      );;
+      );
   }
 
   handleError<T>(operation = 'operation', result?: T) {
@@ -32,38 +32,58 @@ export class UserServiceService {
 
       // Let the app keep running by returning an empty result.
       return of(result as T);
-    }
+    };
   }
 
-  updateUser(oldUser: User, user: User): Observable<User> {
-    const userIndex = this.users.findIndex((el) => {
-      return el.name === oldUser.name;
-    });
+  updateUser(user: User): Observable<User> {
+    // const userIndex = this.users.findIndex((el) => {
+    //   return el.name === oldUser.name;
+    // });
 
-    this.users[userIndex] = user;
-    return of(this.users[userIndex]);
+    // this.users[userIndex] = user;
+    // return of(this.users[userIndex]);
+    const url = 'http://localhost:9000/api/users/' + user.name;
+    return this.http.put<User>(url, user)
+      .pipe(
+        catchError(this.handleError('updateUser', user))
+      );
   }
 
-  removeUser(user: User): Observable<User[]> {
-    const userIndex = this.users.findIndex((el) => {
-      return el.name === user.name;
-    });
+  removeUser(user: User): Observable<User> {
+    const url = 'http://localhost:9000/api/users/' + user.name;
 
-    this.users.splice(userIndex, 1);
-    return of(this.users);
+    return this.http.delete<User>(url)
+      .pipe(
+        catchError(this.handleError('removeUser', user))
+      );
   }
 
-  addUser(user: User): Observable<User[]> {
-    this.users.push(user);
-    return of(this.users);
+  addUser(user: User): Observable<User> {
+    return this.http.post<User>('http://localhost:9000/api/users', user)
+      .pipe(
+        catchError(this.handleError('addUser', user))
+      );
   }
 
   getUser(name: string): Observable<User> {
-    const userIndex = this.users.findIndex((el) => {
-      return el.name === name;
-    });
+    return this.http.get<User>(`http://localhost:9000/api/users/${name}`)
+      .pipe(
+        catchError(this.handleError<User>('getUsers', new User('', '', '', ''))
+        ));
+  }
 
-    return of(this.users[userIndex]);
+  login(user: User): Observable<User> {
+    return this.http.post<User>(`http://localhost:9000/api/auth/login`, user)
+      .pipe(
+        catchError(this.handleError<User>('login', user)
+        ));
+  }
+
+  register(user: User): Observable<User> {
+    return this.http.post<User>(`http://localhost:9000/api/auth/register`, user)
+      .pipe(
+        catchError(this.handleError<User>('register', user)
+        ));
   }
 
   onUserStatusChanged(user: User): boolean {
@@ -81,11 +101,14 @@ export class UserServiceService {
   isUserPropExists(prop: string, formControlName: string): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
       const res = {};
-      this.users.forEach((user) => {
-        if (user[prop] === control.value) {
-          res[formControlName] = true;
-          return res;
-        }
+
+      this.getAllUsers().subscribe((users) => {
+        users.forEach((user) => {
+          if (user[prop] === control.value) {
+            res[formControlName] = true;
+            return res;
+          }
+        });
       });
       return Object.keys(res).length >= 0 ? res : null;
     };

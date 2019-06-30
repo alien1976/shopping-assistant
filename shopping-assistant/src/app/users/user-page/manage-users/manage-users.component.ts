@@ -33,8 +33,8 @@ export class ManageUsersComponent implements OnInit {
   }
 
   addUser() {
-    this.usersService.addUser(new User('', '', '')).subscribe((users) => {
-      this.users = users;
+    this.usersService.addUser(new User('', '', '', '')).subscribe((user) => {
+      this.users.push(user);
       this.dataSource.data = this.users;
     });
   }
@@ -45,9 +45,11 @@ export class ManageUsersComponent implements OnInit {
   }
 
   deleteUser(user: User) {
-    this.usersService.removeUser(user).subscribe((users) => {
-      this.users = users;
-      this.dataSource.data = this.users;
+    this.usersService.removeUser(user).subscribe(() => {
+      this.usersService.getAllUsers().subscribe((users) => {
+        this.users = users;
+        this.dataSource.data = this.users;
+      });
     });
   }
 

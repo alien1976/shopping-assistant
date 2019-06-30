@@ -43,19 +43,19 @@ export class UserSettingsComponent implements OnInit {
     const email = this.userSettingsForm.get('email').value;
     const changes = { name: false, pass: false, email: false };
 
-    if (this.user.name === userName && this.user.password === password && this.user.email === email) {
-      console.log('same settings');
-      // TODO: add error handling
-      return false;
-    }
+    // if (this.user.name === userName /*&& this.user.password === password*/ && this.user.email === email) {
+    //   console.log('same settings');
+    //   // TODO: add error handling
+    //   return false;
+    // }
 
     if (this.user.name !== userName) {
       changes.name = true;
     }
 
-    if (this.user.password !== password) {
-      changes.pass = true;
-    }
+    // if (this.user.password !== password) {
+    //   changes.pass = true;
+    // }
 
     if (this.user.email !== email) {
       changes.email = true;
@@ -101,17 +101,18 @@ export class UserSettingsComponent implements OnInit {
           exists: true
         });
       }
-    } else if (!changes.name && !changes.email && changes.pass) {
+    } else if (!changes.name && !changes.email) {
       this.updateUserSettings(userName, email, password);
     }
   }
 
   updateUserSettings(userName: string, email: string, password: string) {
     const newUser = new User(userName, email, password,
+      this.user.id,
       this.user.isAdmin,
       this.user.favoriteProducts,
       this.user.favoriteShops);
-    this.usersService.updateUser(this.user, newUser);
+    this.usersService.updateUser(newUser);
     this.user = newUser;
 
     if (!this.userEditing) {
@@ -123,7 +124,7 @@ export class UserSettingsComponent implements OnInit {
   onReset() {
     this.userSettingsForm.setValue({
       userName: this.user.name,
-      password: this.user.password,
+      password: '',
       email: this.user.email
     });
   }
@@ -136,8 +137,8 @@ export class UserSettingsComponent implements OnInit {
 
   getPasswordErrorMessage() {
     return this.userSettingsForm.get('password').hasError('required') ? 'You must enter a value' :
-      this.userSettingsForm.get('password').hasError('notValid') ? 'Not a valid password' :
-        '';
+      // this.userSettingsForm.get('password').hasError('notValid') ? 'Not a valid password' :
+      '';
   }
 
   getEmailErrorMessage() {

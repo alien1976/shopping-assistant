@@ -81,7 +81,7 @@ export const MOCK_SHOPS = [
 
 
 export const MOCK_USERS = [
-    new User('User1', 'user1@gmail.com', '12345', false, []),
-    new User('User2', 'user2@gmail.com', '123456', false, []),
-    new User('admin', 'admin@gmail.com', 'admin1234', true, [])
+    // new User('User1', 'user1@gmail.com', '12345', false, []),
+    // new User('User2', 'user2@gmail.com', '123456', false, []),
+    // new User('admin', 'admin@gmail.com', 'admin1234', true, [])
 ];

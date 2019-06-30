@@ -55,7 +55,7 @@ export class UserRegisterComponent implements OnInit {
     const newUser = new User(
       this.firstFormGroup.get('userName').value,
       this.secondFormGroup.get('email').value,
-      this.thirdFormGroup.get('password').value);
+      this.thirdFormGroup.get('password').value, '');
 
     this.usersService.addUser(newUser);
     this.router.navigate(['/login']);

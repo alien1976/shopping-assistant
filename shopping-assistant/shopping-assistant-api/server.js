@@ -7,6 +7,7 @@ const MongoClient = require('mongodb').MongoClient;
 
 const rootPath = path.normalize(path.join(__dirname, '..'));
 const userRoutes = require('./routes/user.routes');
+const authRoutes = require('./routes/auth.routes');
 // const productsRoutes = require('./routes/product.routes');
 // const shopRoutes = require('./routes/shop.routes');
 
@@ -18,6 +19,7 @@ app.use(bodyParser.json({ limit: '100mb' }));
 app.use(cookieParser());
 
 app.use('/api/users', userRoutes);
+app.use('/api/auth', authRoutes);
 // app.use('api/shops', shopRoutes);
 // app.use('/api/products', productsRoutes);
 
@@ -47,7 +49,7 @@ if (app.get("env") === "development") {
 
 const url = 'mongodb://localhost:27017/shopping-assistant';
 
-MongoClient.connect(url, { db: { w: 1 } }).then((db) => {
+MongoClient.connect(url, { useNewUrlParser: true }).then((db) => {
     console.log('Successfully connected to server at: ' + url);
     app.locals.db = db.db('shopping-assistant');
 

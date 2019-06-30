@@ -12,7 +12,7 @@ export class AppComponent {
   title = 'shopping-assistant';
   showSidenav = false;
   loggedIn = localStorage.getItem('currentUser') ? true : false;
-  user: User = !localStorage.getItem('currentUser') ? new User('', '', '') : JSON.parse(localStorage.getItem('currentUser'));
+  user: User = !localStorage.getItem('currentUser') ? new User('', '', '', '') : JSON.parse(localStorage.getItem('currentUser'));
 
   constructor(private sharedService: SharedServiceService, private usersService: UserServiceService) {
     this.sharedService.changeEmitted$.subscribe(

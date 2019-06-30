@@ -13,7 +13,7 @@
   <div fxLayout="column" fxLayoutAlign="center center" fxFlex="grow">
     <form [formGroup]="userSettingsForm">
       <mat-form-field appearance="outline">
-        <mat-label>Password</mat-label>
+        <mat-label>Reset password</mat-label>
         <input matInput formControlName="password" placeholder="Enter your password"
           [type]="hide ? 'password' : 'text'">
         <mat-icon matSuffix class="cursor-pointer" (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}

@@ -72,7 +72,7 @@ export class ToolbarComponent {
       this.loggedIn = true;
     } else {
       this.loggedIn = false;
-      this.user = new User('', '', '');
+      this.user = new User('', '', '', '');
     }
   }
 

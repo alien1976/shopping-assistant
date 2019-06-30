@@ -36,22 +36,28 @@ export class UserLoginComponent implements OnInit {
   onLogin() {
     const userName = this.loginForm.get('userName').value;
     const password = this.loginForm.get('password').value;
-    const userIndex = this.users.findIndex((user) => userName === user.name);
 
-    if (userIndex !== -1) {
-      if (this.users[userIndex].password === password) {
-        this.sharedService.emitChange(this.users[userIndex]);
-        this.router.navigate([`/users/${this.users[userIndex].name}`]);
-      } else {
-        this.loginForm.get('password').setErrors({
-          notValid: true
-        });
-      }
-    } else {
-      this.loginForm.get('userName').setErrors({
-        notValid: true
+    this.usersService.login(new User(userName, '', password, '')).subscribe(
+      data => {
+        if (data) {
+          if (data.password === password) {
+            this.sharedService.emitChange(data);
+            this.router.navigate([`/users/${data.name}`]);
+          } else {
+            this.loginForm.get('password').setErrors({
+              notValid: true
+            });
+          }
+        } else {
+          this.loginForm.get('userName').setErrors({
+            notValid: true
+          });
+        }
+      },
+      err => {
+        console.log(err)
       });
-    }
+
   }
 
   getUserNameErrorMessage() {
